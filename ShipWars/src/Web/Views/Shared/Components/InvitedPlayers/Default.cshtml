@@ -1,0 +1,24 @@
+﻿@model IEnumerable<InvitedPlayerVm>
+
+@if (Model.Any())
+{
+    <ul class="list-group">
+        @foreach (var player in @Model)
+        {
+            <li class="list-group-item">
+                <form asp-controller="Invitations" asp-action="Delete" method="post"
+                      class="form-inline" role="form">
+                    <span class="small">
+                        @($"{@player.Nickname} ({@player.Wins}:{@player.Loses})")
+                    </span>
+                    <input type="hidden" value="@player.InvitationId" name="id" />
+                    <input type="submit" class="btn btn-default btn-xs" value="Delete" />
+                </form>
+            </li>
+        }
+    </ul>
+}
+else
+{
+    @Html.Partial("_EmptyList")
+}
