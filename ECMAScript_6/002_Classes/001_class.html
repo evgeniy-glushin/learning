@@ -1,0 +1,39 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <title>Создание классов</title>
+</head>
+
+<body>
+    <script>
+        'use strict';
+        
+        function Person1() {
+        
+        }
+
+        Person1.prototype.getName = function() {
+            return "Иван";
+        }
+
+        // Определение типа Person2 (функция конструктор до ES6)
+        class Person2 {
+            // метод класса Perosn2 (метод прототипа Person2 до ES6)
+            getName() {
+                return "Ivan";
+            }
+        }
+
+        var p1 = new Person1();
+        console.log("Hello, " + p1.getName());
+        console.log("Hello, " + Person1.prototype.getName.call(p1));
+        
+        var p2 = new Person2();
+        console.log("Hello, " + p2.getName());
+        console.log("Hello, " + Person2.prototype.getName.call(p2));
+    </script>
+
+</body>
+
+</html>

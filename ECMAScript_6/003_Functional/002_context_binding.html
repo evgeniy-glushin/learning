@@ -1,0 +1,45 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Сохранение контекста</title>
+</head>
+<body>
+    <script>
+        "use strict";
+        class My1 {
+            constructor ()
+            {
+                this._name = "My1";
+            }
+
+            doWork() {
+                setTimeout(function () {
+                    console.log(this._name);
+                }, 10);
+            }
+        }
+
+        class My2 {
+            constructor ()
+            {
+                this._name = "My2";
+            }
+
+            doWork() {
+                // При использовании arrow function происходит захват значения this
+                // в соответствии с текущим контекстом функции.
+                setTimeout(() => {
+                    console.log(this._name);
+                }, 10);
+            }
+        }
+
+        let m1 = new My1();
+        let m2 = new My2();
+
+        m1.doWork();
+        m2.doWork();
+    </script>
+</body>
+</html>
+

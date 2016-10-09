@@ -1,0 +1,25 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Transforming and Chaining</title>
+</head>
+<body>
+
+    <script>
+        // promise возвращает 1 при переходе в состояние Fullfiled
+        var p = new Promise(function (resolve, reject) {
+            resolve(1);
+        });
+
+        // вызывая повторно функцию then можно создать цепочку функций, которые будут вызываться одна за одной.
+        // При этом, если одна функция в цепочке возвращает значение, жто значение будет использоваться в последующих функциях в цепочке.
+        p.then(function (val) {
+            console.log("first item in chain. val = " + val);
+            return val + 1; // подмена значение
+        }).then(function (val) { // val - новое значение, которое установила предыдущая функция в цепочке.
+            console.log("second item in chain. val = " + val);
+        });
+    </script>
+
+</body>
+</html>

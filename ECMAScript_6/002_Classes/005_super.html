@@ -1,0 +1,53 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>super</title>
+</head>
+<body>
+    <script>
+        "use strict";
+        class Person {
+            constructor(name) {
+                this._name = name;
+            }
+
+            get name() {
+                return this._name;
+            }
+
+            set name(value) {
+                this._name = value;
+            }
+
+            doWork() {
+                console.log("Hello");
+            }
+        }
+
+        class Employee extends Person {
+
+            constructor (name, position) {
+                super(name); // вызов родительского конструктора
+                this._position = position;
+            }
+
+            get position() {
+                return this._position;
+            }
+
+            set position(value) {
+                this._position = value;
+            }
+
+            doWork () {
+                super.doWork(); // вызов метода doWork из родительского класса
+                console.log(`${this._name} is working`);
+            }
+        }
+
+        let e = new Employee("Ivan", "Developer");
+        console.log(e.position);
+        e.doWork();
+    </script>
+</body>
+</html>

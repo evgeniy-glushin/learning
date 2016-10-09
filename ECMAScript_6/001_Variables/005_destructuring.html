@@ -1,0 +1,79 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Деструктуризация</title>
+    <!-- Polyfill для работы ES6 возможностей в браузерах, которые их не поддерживают-->
+    <script src="https://google.github.io/traceur-compiler/bin/traceur.js"></script>
+    <script src="https://google.github.io/traceur-compiler/bin/BrowserSystem.js"></script>
+    <script src="https://google.github.io/traceur-compiler/src/bootstrap.js"></script>
+</head>
+<body>  
+    <!--<script type="module">-->
+    <script>
+        'use strict';
+
+        var x, y, z;
+        // пример 1
+        // для x присваивается значение нулевого элемента массива (10) для y - первого (20)
+        [x, y] = [10, 20];
+        console.log(x);
+        console.log(y);
+
+        // пример 2
+        [x, y, z] = [10, 20];
+        console.log(x); // 10
+        console.log(y); // 20
+        console.log(z); // undefined
+
+        // пример 3
+        function getValues() {
+            return [10, 20];
+        }
+
+        let [test1, test2] = getValues();
+        console.log(test1); // 10
+        console.log(test2); // 20
+
+        // пример 4
+        let person = {
+            firstName : "Ivan",
+            lastName : "Ivanov",
+            age : 20
+        };
+
+        // При использовании деструктуризации объекта preson
+        // значения свойств будут установлены переменным fn, ln, a
+        let {
+            firstName: fn,
+            lastName: ln,
+            age: a } = person;
+
+        console.log(fn);
+        console.log(ln);
+        console.log(a);
+
+        // пример 5
+        // деструктуризации, когда имена переменных и свойств объекта совпадают
+        // на следующей строке кода создаются переменные с именами firstName, lastName, age
+        let {
+            firstName,
+            lastName,
+            age } = person;
+
+        console.log(firstName);
+        console.log(lastName);
+        console.log(age);
+
+        // пример 6
+        function makeRequest(url, {type, headers}) {
+            // make ajax request
+            console.log(url);
+            console.log(type);
+            console.log(headers);
+        }
+        // объект передаваемый вторым параметром будет деструктурирован в значения аргументов функции
+        makeRequest('foo.aspx', {type : 'post', headers : 'content-type: application/json'});
+    </script>
+</body>
+</html>
+

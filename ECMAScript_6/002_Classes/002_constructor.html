@@ -1,0 +1,27 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Использование конструкторов</title>
+</head>
+<body>
+    <script>
+        "use strict";
+
+        class Person {
+            
+            // определение конструктора
+            constructor(name) {
+                this._name = name;
+            }
+
+            getName() {
+                return this._name;
+            }
+        }
+
+        let p = new Person("Ivan");
+        console.log(p.getName());
+        
+    </script>
+</body>
+</html>

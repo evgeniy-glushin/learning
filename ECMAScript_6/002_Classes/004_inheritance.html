@@ -1,0 +1,38 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Наследование</title>
+</head>
+<body>
+    <script>
+        "use strict";
+        class Person {
+            // определение конструктора
+            constructor(name) {
+                this._name = name;
+            }
+
+            // getter который будет вызываться при обращении к свойству name на экземпляре класса Person
+            get name() {
+                return this._name;
+            }
+
+            // setter, который будет вызываться при установке нового значения свойству name класса Person
+            set name(value) {
+                this._name = value;
+            }
+        }
+
+        // Класс Employee является производным от класса Person
+        class Employee extends Person {
+            doWork () {
+                return `${this._name} is working`;
+            }
+        }
+
+        let e = new Employee("Ivan");
+        console.log(e.doWork());
+    </script>
+</body>
+</html>
+

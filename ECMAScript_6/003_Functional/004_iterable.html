@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <title>Создание классов</title>
+    <script src="https://google.github.io/traceur-compiler/bin/traceur.js"></script>
+    <script src="https://google.github.io/traceur-compiler/bin/BrowserSystem.js"></script>
+    <script src="https://google.github.io/traceur-compiler/src/bootstrap.js"></script>
+</head>
+
+<body>
+    <script>
+        'use strict';
+        
+        let sum = 0;
+        let numbers = [1, 2, 3, 4]; // перечисляемый объект (iterable)
+        
+        let iterator = numbers.values(); // перечислитель (iterator)
+        let next = iterator.next();
+        
+        while(!next.done){
+            sum += next.value;
+            next = iterator.next();
+        }
+        
+        console.log(sum);
+    </script>
+
+</body>
+
+</html>

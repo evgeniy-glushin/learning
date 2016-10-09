@@ -1,0 +1,25 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>REST параметры</title>
+</head>
+<body>
+    <script>
+        'use strict';
+        // ...values - rest параметр (всегда последний аргумент функции)
+        // все значения передаваемые в функцию после первого аргумента будут формировать массив.
+        // если при вызове не будет передан ни один параметр, rest параметр будет пустым массивом.
+        function testRestParams(name, ...values) {
+            
+            console.log(name);
+            
+            values.forEach(function(e) {
+                console.log(e);
+            });
+        }
+
+        testRestParams('test', 1, 2, 3);
+    </script>
+</body>
+</html>
+

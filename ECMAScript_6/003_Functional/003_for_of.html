@@ -1,0 +1,32 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <title>for of</title>
+</head>
+
+<body>
+    <script>
+        'use strict';
+
+        let numbers = [1, 2, 3, 4, 5];
+        let sum = 0;
+        
+        for(let index in numbers)
+        {
+            sum += numbers[index];
+        }
+        console.log(sum);
+
+        sum = 0;
+
+        for(let val of numbers)
+        {
+            sum += val;
+        }
+        console.log(sum);
+        
+    </script>
+</body>
+
+</html>

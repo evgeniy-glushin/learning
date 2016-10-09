@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <title>Создание классов</title>
+    <script src="https://google.github.io/traceur-compiler/bin/traceur.js"></script>
+    <script src="https://google.github.io/traceur-compiler/bin/BrowserSystem.js"></script>
+    <script src="https://google.github.io/traceur-compiler/src/bootstrap.js"></script>
+</head>
+
+<body>
+    <script>
+        'use strict';
+        // iterable - класс, объекты которого будут перечисляемыми
+        class MyCollaction {
+            
+            constructor() {
+                this.items = [];
+            }
+            
+            addItems(...items) {
+                this.items = this.items.concat(items);
+            }
+            
+            // метод для получения перечислителя (iterator)
+            *[Symbol.iterator](){
+                for(let e of this.items) {
+                    // yield e - определяем значения, которые будут использоваться при вызове метода next
+                    yield e;
+                }
+            }
+        }
+        
+        let coll = new MyCollaction();
+        coll.addItems(1, 2, 3, 4, 5);
+
+        for(let x of coll){
+            console.log(x);
+        }
+    </script>
+
+</body>
+
+</html>

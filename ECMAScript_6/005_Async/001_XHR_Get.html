@@ -1,0 +1,50 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Пример использования Promise и XHR</title>
+</head>
+<body>
+    <button id="getBtn">Get</button>
+    <script>
+        function request(url) {
+            // Создание нового объекта Promise
+            return new Promise(function (resolve, reject) {
+                // Создание XMLHttpRequest и отправка GET запроса по адресу url
+                var req = new XMLHttpRequest();
+                req.open('GET', url);
+                
+                req.onload = function () {
+                    // Проверка статуса ответа
+                    if (req.status == 200) {
+                        // Resolve promise
+                        resolve(req.response);
+                    }
+                    else {
+                        // Reject promise
+                        reject(Error(req.statusText));
+                    }
+                };
+
+                // Обработка сетевых ошибок
+                req.onerror = function () {
+                    reject(Error("Network Error"));
+                };
+
+                // отправка запроса на сервер
+                req.send();
+            });
+        }
+
+        var btn = document.getElementById("getBtn");
+
+        btn.addEventListener("click", function () {
+            request("data.txt").then(function (data) {
+                console.log(data);
+            }, function (error) {
+                console.error(error);
+            });
+        })
+
+    </script>
+</body>
+</html>

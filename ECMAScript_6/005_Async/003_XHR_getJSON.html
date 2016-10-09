@@ -1,0 +1,57 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Get JSON</title>
+</head>
+<body>
+    <button id="getBtn">Get</button>
+    <script>
+        function request(url) {
+            // Создание нового объекта Promise
+            return new Promise(function (resolve, reject) {
+                // Создание XMLHttpRequest и отправка GET запроса по адресу url
+                var req = new XMLHttpRequest();
+                req.open('GET', url);
+
+                req.onload = function () {
+                    // Проверка статуса ответа
+                    if (req.status == 200) {
+                        // Resolve promise
+                        resolve(req.response);
+                    }
+                    else {
+                        // Reject promise
+                        reject(Error(req.statusText));
+                    }
+                };
+
+                // Обработка сетевых ошибок
+                req.onerror = function () {
+                    reject(Error("Network Error"));
+                };
+
+                // отправка запроса на сервер
+                req.send();
+            });
+        }
+
+        function getJSON(url) {
+            // получаем promise устанавливаем для него функцию JSON.parse как первую функцию в цепочке, которая десириализует JSON полученный с сервера в JS объект
+            // после чего будет возвращен promise с которым продолжится работа на строке 47
+            return request(url).then(JSON.parse);
+        }
+
+        var btn = document.getElementById("getBtn");
+
+        btn.addEventListener("click", function () {
+            getJSON("person.txt").then(function (data) {
+                console.log(data);
+            }, function (error) {
+                console.error(error);
+            });
+        })
+
+    </script>
+
+</body>
+</html>

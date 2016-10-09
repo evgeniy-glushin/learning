@@ -1,0 +1,34 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Свойства</title>
+</head>
+<body>
+    <script>
+        "use strict";
+
+        class Person {
+            // определение конструктора
+            constructor(name) {
+                this._name = name;
+            }
+
+            // getter который будет вызываться при обращении к свойству name на экземпляре класса Person
+            get name() {
+                return this._name;
+            }
+
+            // setter, который будет вызываться при установке нового значения свойству name класса Person
+            set name(value) {
+                this._name = value;
+            }
+        }
+
+        let p = new Person("Ivan");
+        console.log(p.name); // getter
+        p.name = "Dmitriy"; // setter
+        console.log(p.name); // getter
+    </script>
+</body>
+</html>
+

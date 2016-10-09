@@ -1,0 +1,27 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Аргументы по умолчанию</title>
+</head>
+<body>
+    <script>
+        'use strict';
+
+        function operation1(value) {
+            value = value || "hello world"; // если значение value не предоставлено (undefined) использовать значение 'hello world'
+            console.log(value);
+        }
+
+        // использование значений по умолчанию ES6
+        function operation2(value = "test string") {
+            console.log(value);
+        }
+
+        operation1();
+        operation1(123);
+        
+        operation2();
+        operation2(123);
+    </script>
+</body>
+</html>

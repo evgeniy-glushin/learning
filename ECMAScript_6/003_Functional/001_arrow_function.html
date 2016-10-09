@@ -1,0 +1,31 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Arrow Functions</title>
+</head>
+<body>
+    <script>
+        "use strict";
+        var add1 = function (x, y) {
+            return x + y;
+        }
+        console.log(add1(10, 20));
+
+        var add2 = (x, y) => x + y;
+        console.log(add2(10, 20));
+
+        var add3 = x => x + 2;
+        console.log(add3(10));
+
+        var add4 = () => 10 + 2;
+        console.log(add4());
+
+        var add5 = x => {
+            let temp = x + 10;
+            return temp;
+        };
+        console.log(add5(10));
+
+    </script>
+</body>
+</html>

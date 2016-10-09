@@ -1,0 +1,25 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Области видимости</title>
+</head>
+<body>
+    <script>
+        'use strict';
+        // В JavaScript есть две области видимости. Глобальная - представленная объектом window и
+        // локальная - функция. В JavaScript нет блочных областей видимости.
+        // Объявив переменную в блоке if или в другой подобной конструкции, переменная будет видна во всей функции.
+        function scopeTest(flag) {
+            
+            if (flag == true) {
+                var x = 10;
+            }
+
+            return x;
+        }
+
+        console.log(scopeTest(true));
+        console.log(scopeTest(false));
+    </script>
+</body>
+</html>

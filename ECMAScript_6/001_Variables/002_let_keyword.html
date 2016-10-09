@@ -1,0 +1,26 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Ключевое слово let</title>
+</head>
+<body>
+    <script>
+        'use strict';
+
+        function scopeTest(flag) {
+
+            // Ключевое слово let позволяет ограничить видимость переменной, областью видимости блока или выражения
+            // в котором эта переменная была объявлена
+            if (flag == true) {
+                let x = 10;
+            }
+
+            return x; // x is not defined
+        }
+
+        console.log(scopeTest(true)); // x is not defined
+        console.log(scopeTest(false));
+    </script>
+</body>
+</html>
+
