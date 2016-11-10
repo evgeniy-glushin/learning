@@ -5,7 +5,6 @@ var game = new Phaser.Game(800, 500, Phaser.AUTO, '',
         update: update,
         render: render
     });
-let log = console.log.bind(console);
 
 function preload() {
     game.load.image('J', 'assets/J.png');
@@ -39,19 +38,7 @@ function create() {
         addSymbol(symbols, getRandomItem(symbolKeys))
 }
 
-function addSymbol(symbols, key){
-    let y = symbols.length * SYMBOL_HEIGHT;
-    let newSymbol = createSymbol(startPosition.x, y, key);
-    symbols.push(newSymbol);
-    return newSymbol;
-}
 
-function createSymbol(x, y, key) {
-    let symbol = game.add.sprite(x, y, key);
-    game.physics.arcade.enable(symbol);
-    symbol.body.velocity.y = 50;
-    return symbol;
-}
 
 let isRunning = true;
 let winKey;
