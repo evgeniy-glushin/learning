@@ -17,7 +17,7 @@ namespace AsyncExt
             await GetMessages()
                 .Select(MessageHandler)
                 .ToList() // run all
-                .Batch(batchTimeout: 3000,
+                .BatchProcessing(batchTimeoutInMilliseconds: 3000,
                        onSuccess: AcknowledgeAll,
                        onFail: RejectAll,
                        nextBatch: nextBatch);
@@ -87,19 +87,19 @@ namespace AsyncExt
 
     public static class EnumerableExt
     {
-        public static async Task Batch(this IEnumerable<Task<Message>> self,
-            int batchTimeout,
-            Func<IEnumerable<Message>, Task> onSuccess,
-            Func<IEnumerable<Message>, Task> onFail,
-            Func<int, IEnumerable<Task<Message>>> nextBatch)
+        public static async Task BatchProcessing<T>(this IEnumerable<Task<T>> self,
+            int batchTimeoutInMilliseconds,
+            Func<IEnumerable<T>, Task> onSuccess,
+            Func<IEnumerable<T>, Task> onFail,
+            Func<int, IEnumerable<Task<T>>> nextBatch)
         {
             var handledTasks = new List<Task>();
             await Execute(self);
             await Task.WhenAll(handledTasks);
 
-            async Task Execute(IEnumerable<Task<Message>> items)
+            async Task Execute(IEnumerable<Task<T>> items)
             {
-                var batchTimeoutTask = Task.Delay(batchTimeout);
+                var batchTimeoutTask = Task.Delay(batchTimeoutInMilliseconds);
                 var batchTasks = Task.WhenAll(items);
 
                 var completedTask = await Task.WhenAny(batchTasks, batchTimeoutTask);
